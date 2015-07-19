@@ -1,6 +1,6 @@
 hello
 line 2
-line 
+line 1234
 this is experimental code
 git log
 git clone
@@ -78,7 +78,7 @@ What happens when you initialize a repository?
 							 Why do we represent it in the diagram the way we do?
 							     After a merge, all commits will be shown based on the timestamp in git log. This will show the commits from the two different branches running through each other.
 
-							     What are the pros and cons of GitÎéÎ÷s automatic merging vs. always doing merges manually?
+							     What are the pros and cons of GitÃŽÃ©ÃŽÃ·s automatic merging vs. always doing merges manually?
 							         Automatic merging saves a lot of time compared to doing merges manually. 
 
 								 Commands:
