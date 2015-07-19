@@ -1,4 +1,13 @@
 hello
 line 2
 line 
-this is experimental code	
+this is experimental code
+git log
+git clone
+git branch
+git diff
+git checkout
+git checkin
+git remote
+git remote <remote repository> <local repository>
+
