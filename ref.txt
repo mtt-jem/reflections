@@ -10,4 +10,122 @@ git checkout
 git checkin
 git remote
 git remote <remote repository> <local repository>
++Viewing a diff between two files helps indentifying areas where a new bug may
++have been introduced. So check those locations first when things are "suddenly"
++broken.
++
++Other notes:
++Use git-bash to get linux style command prompt
++on windows you have program called FC. Can be runned from commandline:
++>>	FC file-old.js file-new.js
++
++Reflect: Manual Commits
++By committing manually instead of automaticall, you can decide what to commit and when.
++This gives the opportunity to split the commits based on functionality. 
++By committing manually you can specify commit messages describing what has changed, instead of only showing an auto commit.
++
++Reflect: Multi-File commits
++Multi-file commits are usefull when files are related to eachother.
++"Normal" documents seldom have relations, so those are not needed. In sourcecode, files will have lots of relations.
++So having multi-file commits is an essential feature.
++
++Reflect: what do you want to try using Git for?
++Source code for a simple website/game
++
++Commands:
++
++q |    exit git log!
++git log  |    List the commits and show which files have changed
++git log --stat  |    Show addition information about the commits
++git diff id1 id2  |    Compare two commits
++git clone  |    Create a local copy/clone from the repository
++git config --global color.ui auto |    get colored diff output
++git checkout  |    Shows a previous version of the file. This is not a checkout to edit like in SVN or TFS
 
+!
+What happens when you initialize a repository? 
+    A new git repository is created. A hidden folder named .git is added which contains the required files for version history.
+
+    Why do you need to do it?
+        Without a repository, git cannot do anything. Git works only on git repositories.
+
+	How is the staging area different from the working directory and the repository? 
+	    The staging area is a monitored area by git. It is not required to contain all files from the working directory. 
+	        The files are not yet in the repository so you can still add/remove files from the staging area before making a commit.
+
+		What value do you think it offers?
+		    The option to create your set of files which you want to commit without having to add all new files. This way
+		        you have the option to make a split based on logical functionality
+
+			How can you use the staging area to make sure you have one commit per logical change?
+			    The staging area gives you the possibility to decide which files should be part of the commit and which not.
+			        This way you can split changed files in logical change sets.
+
+				What are some situations when branches would be helpful in keeping your history organized? 
+				    Work on conflicting changes, trying out new features, large code refactoring etc.
+				        This gives the possibility to change everything with multiple commits into the "feature branch" and then do a large merge to the "main branch".
+					    This will keep the history clean, but you can still use version control during development.
+
+					    How would branches help?
+					        Split concerns. Safe to make big changes and test new things out.
+
+						How do the diagrams help you visualize the branch structure?
+						     By drawing the diagram you can directly see the relations between commits and branches. This makes it clear where to find specific changes.
+
+						     What is the result of merging two branches together? 
+						         The result is one branch with changes from both branches.
+
+							 Why do we represent it in the diagram the way we do?
+							     After a merge, all commits will be shown based on the timestamp in git log. This will show the commits from the two different branches running through each other.
+
+							     What are the pros and cons of GitÎéÎ÷s automatic merging vs. always doing merges manually?
+							         Automatic merging saves a lot of time compared to doing merges manually. 
+
+								 Commands:
+
+								 git add  |    Add a file to the staging area
+								 git commit  |    Commit the files from the staging area to the repository 
+								 git status  |    Show which files are in the staging area, and which files from the working directory are not part of the repository    
+								 git diff  |    Git diff without arguments is comparing the working directory with the staging area
+								 git diff --staged  |    Compare the staging area with the repository
+								 git reset --hard  |    Undo all changes! There is no rollback for this, so be carefull!
+								 git checkout master  |    Restore the "Head" to the latest check-in (this will be part of a later lesson/module)
+								 git log --graph --oneline <branch1> <branch2>  |    Show a visual representation of the commit history within different branches
+								 git checkout -b new_branch_name  |    Creates a new branch and do a checkout on this branch in one call instead of git branch new_branch_name and git checkout new_branch_name
+								 git merge branch1 branch2  |    Merge two branches, branch2 get merged into branch1
+								 git branch -d name  |    Remove the branch with the specified name
+								 git show commitId  |    Show the changes made in this commit compared to the previous version. This is working even after merging
+								 
+								 .
+								 When would you want to create a remote repository rather than keeping all your work local?
+								     When collaborating with other users it's easier to share updates by using a remote repository. This way others can contribute, and get changes too.
+
+								     Why might you want to always pull changes manually rather than having Git automatically stay up-to-date with your remote repository?
+								         Changes can cause conflicts. If you are in the process of creating a new feature, you don't want to solve those conflicts but finish your feature first.
+									     This way you can keep focus and decide when you want to get the latest versions and integrate changes.
+									         
+										 Describe the differences between forks, clones, and branches. When would you use one instead of another?
+										     A fork is a copy of a repository on GitHub. Use this when you want to make changes to a repository when you don't have access to the original repository.
+										         A clone is copy of a repository. This can be on the same machine, but it can also be a clone from a GitHub repository to your own machine. Use this for collaborating.
+											     Branches are leafs on the master branch. Those can be seen as a side track in which you can change code without changing the master branch. Use this for creating new features/bug fixes.
+
+											     What is the benefit of having a copy of the last known state of the remote stored locally?
+											         You can work offline, it saves a lot of data overhead when pushing changes to github and it gives the possibility to do a quick check which changes are made in the online repo compared to the offline repository.
+
+												 How would you collaborate without using Git or GitHub? What would be easier, and what would be harder?
+												     Without Git or GitHub I have to sent files over via email/networkshare/dropbox etc. This will work but I'm loosing the history of changes. This makes it hard to combine the work of multiple people.
+												         The only thing I can think of that is easier without using Git is that you don't need to learn how Git works, and the other techniques are simpler.
+
+													 When would you want to make changes in a separate branch rather than directly in master? What benefits does each approach have?
+													     You want to make changes in a different branch so that the master branch always stays in a working state. By using a different branch, you can push your changes to GitHub for review by other people, without directly messing up the master branch.
+													         For small changes it is a lot quicker to make them directly in the master branch, but this comes with a risk.
+
+														 Commands:
+
+														 git remote  |    Show all remote locations for the repository
+														 git remote add origin url |     Add a new remote location for the repository. Origin is the default name to use when you create only one remote location. Url should be the https url to the github repository.
+														 git remove -v  |    Outputs the remote locations with verbose information (fetch and push urls)
+														 git push origin master  |    Push the master branch to the remote location origin.
+														 git pull origin master  |    Get the master branch from the remote location origin.
+														 git pull origin master  |    = Git fetch origin + git merge master origin/master
+														 git fetch origin  |    Get the changes from the remote location into the (hidden?) origin/master branch
